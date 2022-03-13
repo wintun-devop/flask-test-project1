@@ -1,0 +1,69 @@
+sudo vi /etc/apache2/sites-available/testapp.net.conf
+
+sudo a2dissite 000-default.conf
+systemctl reload apache2
+
+sudo a2ensite testapp.net.conf
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+VirtualHost Config
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<VirtualHost *:80>
+	ServerName your_domain_without_wwww
+	ServerAdmin wintun101@gmail.com
+	ServerAlias your_domain_name_with_www
+	DocumentRoot /var/www/html/testapp.net
+		
+	WSGIDaemonProcess testapp.net threads=5
+	WSGIScriptAlias / /var/www/html/testapp.net/testapp.wsgi
+		
+	<Directory testapp.net>
+		WSGIProcessGroup testapp.net
+		WSGIApplicationGroup %{GLOBAL}
+		Order allow,deny
+		Allow from all
+	</Directory>
+		
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<VirtualHost *:80>
+		ServerName ip
+		ServerAdmin wintun101@gmail.com
+		DocumentRoot /var/www/html/testapp.net
+		
+		WSGIDaemonProcess testapp.net threads=5
+		WSGIScriptAlias / /var/www/html/testapp.net/testapp.wsgi
+		
+		<Directory /var/www/html/testapp.net/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		Alias /static /var/www/html/testapp.net/static
+		<Directory /var/www/html/testapp.net/static/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
