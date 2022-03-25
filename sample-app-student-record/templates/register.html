@@ -1,0 +1,47 @@
+
+    {% for message in get_flashed_messages() %}
+        <strong>{{ message }}</strong>
+    {% endfor %}
+    <center>
+        <form method="post">
+            <table class="table">
+                <tr><th>Student Registeration Form</th></tr>
+                <tr>
+                    <td><label for="firstname">First Name</label></td>
+                    <td><input type="text" name="firstname" placeholder="First name"></input></td>
+                </tr>
+                <tr>
+                    <td><label for="lastname">Last Name</label></td>
+                    <td><input type="text" name="lastname" placeholder="Last name"></input></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td><input type="email" name="email" placeholder="Student email"></input></td>  
+                </tr>
+                <tr>
+                    <td><label for="pass">Password</label></td>
+                    <td><input type="password" name="pass" placeholder="Pasword:"></input></td>
+                </tr>
+                <tr>
+                    <td><label for="contact">Contact Number:</label></td>
+                    <td><input type="number" name="contact" placeholder="Contact Number.."></input></td>
+                </tr>
+                <tr>
+                    <td><label for="contact">Gender:</label></td>
+                    <td>
+                        <select class="form-select" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dob">Date of Birth:</label></td>
+                    <td><input type="date" name="dob" placeholder="Date of Birth.."></input></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Register</button></td>
+                </tr>
+            </table>
+        </form>
+    </center>

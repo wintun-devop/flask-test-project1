@@ -1,0 +1,6 @@
+{% for message in get_flashed_messages() %}
+        <strong>{{ message }}</strong>
+{% endfor %}
+{% for student  in student %}
+ <p>Name:{{student.firstname}} {{student.lastname}} - Email: {{student.email}} - Contact:{{student.contact}} - {{student.dob}} - <a href="/updatestudent/{{ student.id }}">Update</a> - <a href="/deletestudent/{{ student.id  }}">Delete</a></p>
+{% endfor %}

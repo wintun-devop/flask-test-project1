@@ -1,0 +1,38 @@
+<center>
+        {% for message in get_flashed_messages() %}
+            <strong>{{ message }}</strong>
+        {% endfor %}
+        <form action="/updatestudent/{{ update_student.id }}"  method="post">
+            <table>    
+                <tr><th>Update Student Registeration</th></tr> 
+                <tr>
+                    <td><label for="firstname">First Name</label></td>
+                    <td><input type="text" name="update-fn" value="{{update_student.firstname}}"></input></td>
+                </tr>
+                <tr>
+                    <td><label for="lastname">Last Name</label></td>
+                    <td><input type="text" name="update-ln" value="{{update_student.lastname}}"></input></td>
+                </tr>
+                <tr>
+                    <td><label for="contact">Contact Number:</label></td>
+                    <td><input type="number" name="update-contact" value="{{update_student.contact}}"></input></td>
+                </tr>
+                <tr>
+                    <td><label for="contact">Gender:</label></td>
+                    <td>
+                        <select class="form-select" name="update-gender" value="{{update_student.gender}}">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dob">Date of Birth:</label></td>
+                    <td><input type="date" name="update-dob" value="{{update_student.dob}}"></input></td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Update</button></td>
+                </tr>           
+        </table>   
+    </form> 
+</center>
