@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock  %}
+{% block content %}
+    <strong>{{ message }}</strong>
+<br>
+<div class="text-center">
+    <img src="/static/images/youtube.png" class="rounded " alt="..." style="width:128px;height:128px;">
+</div>
+<form action="/register" method="post">
+    <div class="mb-3">
+        <label for="fornameInput" class="form-label">Name:</label>
+        <input type="text" class="form-control" name="name" placeholder="Name.....">
+    </div>
+    <div class="mb-3">
+        <label for="formemailInput" class="form-label">Email:</label>
+        <input type="email" class="form-control" name="e-mail" placeholder="Email Address">
+    </div>
+    <div class="mb-3">
+        <label for="forpasswordInput" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password.....">
+    </div>
+    <div class="mb-3">    
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </div>
+    <div class="mb-3">    
+        <a href="{{ url_for('index') }}">if you have already account,go to login!</a>
+    </div>
+</form>
+{% endblock  %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock  %}
+{% block content %}
+    <br>
+    <div class="text-center">
+        <img src="/static/images/youtube.png" class="rounded " alt="..." style="width:128px;height:128px;">
+    </div>
+    <br>
+    <div class="container">
+    <form method="post" action="/login">
+        <div class="mb-3">
+        <label for="formemailInput" class="form-label">Email:</label>
+        <input type="email" class="form-control" name="email" placeholder="Email Address">
+        </div>
+        <div class="mb-3">
+        <label for="forpasswordInput" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Password.....">
+        </div>
+        <div class="mb-3">    
+        <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div class="mb-3">    
+            <a href="/register">Register for Account!</a>
+        </div>
+    </form>
+    </div>
+    <div class="text-center">
+        {{ message }}
+    </div>
+
+{% endblock  %}
