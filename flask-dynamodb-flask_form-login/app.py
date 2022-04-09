@@ -12,12 +12,12 @@ app=Flask(__name__)
 app.config['SECRET_KEY']=application_data.applicationSecret
 
 
-#declare aws dynamodb resource(000000003)
+#declare aws dynamodb resource(3)
 awsResource=boto3.resource("dynamodb",region_name=awsdata.aws_region,aws_access_key_id=awsdata.aws_access_key,
                    aws_secret_access_key=awsdata.aws_secret_key
                     )
 
-#login in process
+#login in process(6)
 @app.route("/login", methods=["GET","POST"])
 def login():
     login_form=Login()
@@ -49,7 +49,7 @@ def login():
     return render_template("index.html",loginform=login_form)
 
 
-#add data to dynamodb table(000000004)
+#add data to dynamodb table(5)
 @app.route("/signup",methods=["POST","GET"])
 def signup():
     signup_form=SignUp()
@@ -79,7 +79,7 @@ def signup():
             return render_template("signup.html",signupform=signup_form)
     return render_template("signup.html",signupform=signup_form)
 
-#define initial decorator index page for user login(000000004)
+#define initial decorator index page for user login(4)
 @app.route("/", methods=["GET"])
 def index():
     return redirect(url_for("login"))
