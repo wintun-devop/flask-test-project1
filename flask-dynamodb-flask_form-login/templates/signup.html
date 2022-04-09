@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock  %}
+{% block content %}
+    <strong>{{ message }}</strong>
+<br>
+<div class="text-center">
+    <img src="/static/images/youtube.png" class="rounded " alt="..." style="width:128px;height:128px;">
+</div>
+<!-- flash message output -->
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<!-- flask form for signup process-->
+<form method="post">
+    <div class="mb-3">
+        {{ signupform.hidden_tag() }}
+        {{ signupform.signup_name.label(class="form-label") }}
+        {{ signupform.signup_name(class="form-control") }}
+        {{ signupform.signup_email.label(class="form-label") }}
+        {{ signupform.signup_email(class="form-control") }}
+        {{ signupform.signup_password.label(class="form-label") }}
+        {{ signupform.signup_password(class="form-control") }}
+        {{ signupform.confirm_password.label(class="form-label") }}
+        {{ signupform.confirm_password(class="form-control") }}<br>
+        {{ signupform.submit(class="btn btn-primary mb-3") }}
+    </div>
+    <div class="mb-3">    
+        <a href="{{ url_for('index') }}">if you have already account,go to login!</a>
+    </div>
+</form>
+{% endblock  %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock  %}
+{% block content %}
+    <br>
+    <div class="text-center">
+        <img src="/static/images/youtube.png" class="rounded " alt="..." style="width:128px;height:128px;">
+    </div>
+    <br>
+    <!-- flash message output -->
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    <div class="container">
+    <!-- flask form for login process-->
+    <form method="post">
+        <div class="mb-3">
+            {{ loginform.hidden_tag() }}
+            {{ loginform.login_email.label(class="form-label") }}
+            {{ loginform.login_email(class="form-control") }}
+            {{ loginform.login_password.label(class="form-label") }}
+            {{ loginform.login_password(class="form-control") }}<br>
+            {{ loginform.submit(class="btn btn-primary mb-3") }}
+        </div>
+        <div class="mb-3">    
+            <a href="/signup">Register for Account!</a>
+        </div>
+    </form>
+    </div>
+    <div class="text-center">
+        {{ message }}
+    </div>
+
+{% endblock  %}
