@@ -1,0 +1,5 @@
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        {{ customeruploadform.hidden_tag() }} {{ customeruploadform.upload_image.label(class="form-label") }} {{ customeruploadform.upload_image(class="form-control") }} {{ customeruploadform.submit(class="btn btn-primary mb-3") }}
+    </div>
+</form>
