@@ -1,0 +1,21 @@
+{% extends "base_backend.html" %}
+{% block title %}Add a Brand Name{% endblock  %}
+{% block content %}
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="text-center h4 text-white bg-primary p-2">Update a Brand Name</div>
+        <form method="POST" enctype="multipart/form-data">
+        <div>
+            {{ brandupdateform.hidden_tag() }}
+            {{ brandupdateform.f_brandname.label(class="form-label") }}
+            {{ brandupdateform.f_brandname(class="form-control") }}<br>
+            {{ brandupdateform.submit(class="btn btn-primary mb-3") }}
+        </div>
+        </form>
+    </div>
+        <div class="col-md-3"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base_backend.html' %}
+{% block title %}Add Product Page{% endblock  %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+        <div class="text-center h4 text-white bg-primary p-2">Add a Product</div>
+        <form method="POST" enctype="multipart/form-data">
+        <div>
+            {{ productaddform.hidden_tag() }}
+            {{ productaddform.f_name.label(class="form-label") }}
+            {{ productaddform.f_name(class="form-control") }}
+            {{ productaddform.f_model.label(class="form-label") }}
+            {{ productaddform.f_model(class="form-control") }}
+            {{ productaddform.f_price.label(class="form-label") }}
+            {{ productaddform.f_price(class="form-control") }}
+            {{ productaddform.f_discount.label(class="form-label") }}
+            {{ productaddform.f_discount(class="form-control") }}
+            {{ productaddform.f_stock.label(class="form-label") }}
+            {{ productaddform.f_stock(class="form-control") }}
+            <label for="brand">Brand:</label>
+            <select name="brand" id="brand" class="form-control" required> 
+                <option value="">Select a Brand</option>
+                {% for brand in brands %}
+                <option value="{{brand.id}}">{{brand.name}}</option>
+                {% endfor %}
+            </select>
+            <label for="category">Category:</label>
+            <select name="category" id="category" class="form-control" required>
+                <option value="">Select a Category</option>
+                {%  for category in categories %}
+                <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+            {{ productaddform.f_color.label(class="form-label") }}
+            {{ productaddform.f_color(class="form-control") }}
+            {{ productaddform.f_desc.label(class="form-label") }}
+            {{ productaddform.f_desc(class="form-control") }}
+            {{ productaddform.f_image.label(class="form-label") }}
+            {{ productaddform.f_image(class="form-control") }}
+            {{ productaddform.submit(class="btn btn-primary mb-3") }}
+        </div>
+        </form>
+    </div>
+        <div class="col-md-2"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_backend.html" %}
+{% block title %}Add a Category Name{% endblock  %}
+{% block content %}
+<br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+            <div class="text-center h4 text-white bg-primary p-2">Add a Category Name</div>
+            <form method="POST" enctype="multipart/form-data">
+            <div>
+                {{ addcatform.hidden_tag() }}
+                {{ addcatform.f_category.label(class="form-label") }}
+                {{ addcatform.f_category(class="form-control") }}<br>
+                {{ addcatform.submit(class="btn btn-primary mb-3") }}
+            </div>
+            </form>
+        </div>
+            <div class="col-md-3"></div>
+    </div>
+{% endblock %}

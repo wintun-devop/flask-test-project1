@@ -1,0 +1,22 @@
+{% extends "base_backend.html" %}
+{% block title %}Category Update{% endblock  %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <div class="text-center h4 text-white bg-primary p-2">Update a Category Name</div>
+        <form method="POST" enctype="multipart/form-data">
+        <div>
+            {{ categoryupdateform.hidden_tag() }}
+            {{ categoryupdateform.f_category.label(class="form-label") }}
+            {{ categoryupdateform.f_category(class="form-control") }}<br>
+            {{ categoryupdateform.submit(class="btn btn-primary mb-3") }}
+        </div>
+        </form>
+    </div>
+        <div class="col-md-3"></div>
+</div>
+
+{% endblock %}

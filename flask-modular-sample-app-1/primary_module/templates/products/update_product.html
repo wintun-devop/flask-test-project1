@@ -1,0 +1,53 @@
+{% extends 'base_backend.html' %}
+{% block title %}Products List{% endblock  %}
+{% block content %}
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                <div class="text-center h4 text-white bg-primary p-2">Update a Product</div>
+                <form method="POST" enctype="multipart/form-data">
+                <div>
+                    {{ productupdateform.hidden_tag() }}
+                    {{ productupdateform.f_name.label(class="form-label") }}
+                    {{ productupdateform.f_name(class="form-control") }}
+                    {{ productupdateform.f_model.label(class="form-label") }}
+                    {{ productupdateform.f_model(class="form-control") }}
+                    {{ productupdateform.f_price.label(class="form-label") }}
+                    {{ productupdateform.f_price(class="form-control") }}
+                    {{ productupdateform.f_discount.label(class="form-label") }}
+                    {{ productupdateform.f_discount(class="form-control") }}
+                    {{ productupdateform.f_stock.label(class="form-label") }}
+                    {{ productupdateform.f_stock(class="form-control") }}
+                    <label for="brand">Brand:</label>
+                    <select name="brand" id="brand" class="form-control" required> 
+                        <option value="">Select a Brand</option>
+                        {% for brand in brands %}
+                        <option value="{{brand.id}}">{{brand.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category">Category:</label>
+                    <select name="category" id="category" class="form-control" required>
+                        <option value="">Select a Category</option>
+                        {%  for category in categories %}
+                        <option value="{{category.id}}">{{category.name}}</option>
+                        {% endfor %}
+                    </select>
+                    {{ productupdateform.f_color.label(class="form-label") }}
+                    {{ productupdateform.f_color(class="form-control") }}
+                    {{ productupdateform.f_desc.label(class="form-label") }}
+                    {{ productupdateform.f_desc(class="form-control") }}
+                    {{ productupdateform.submit(class="btn btn-primary mb-3") }}
+                </div>
+                </form>
+            </div>
+                <div class="col-md-2"></div>
+        </div>
+{% endblock %}

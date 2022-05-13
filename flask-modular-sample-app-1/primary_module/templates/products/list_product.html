@@ -1,0 +1,47 @@
+{% extends 'base_backend.html' %}
+{% block title %}Products List{% endblock  %}
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <br>
+    <div class="container">
+        <table class="table table-sm table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Model</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Stock</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in productlist %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.model }}</td>
+                    <td>{{ product.color }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.discount }}</td>
+                    <td>{{ product.stock }}</td>
+                    <th><img src="{{ url_for("static",filename="images/products/"+product.image)}}" width="60" height="40"><a href="#">Update Image</a></th>
+                    <td>
+                        <a href="{{ url_for("productupdate",id=product.id)}}" class="btn btn-warning btn-xs">Update</a>
+                        <a href="{{ url_for("productdelete",id=product.id)}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
