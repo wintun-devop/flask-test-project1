@@ -17,9 +17,9 @@
                 Brands
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-                <li><a class="dropdown-item" href="#">Actiona-1</a></li>
-                <li><a class="dropdown-item" href="#">Actiona-2</a></li>
+                {% for brand in brands %}
+                <li><a class="dropdown-item" href="{{ url_for("product_by_brand_display",id=brand.id) }}">{{brand.name}}</a></li>
+                {% endfor %}
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{url_for("index")}}">Back to Home</a></li>
               </ul>

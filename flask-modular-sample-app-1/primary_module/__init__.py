@@ -11,5 +11,6 @@ app.config['SQLALCHEMY_DATABASE_URI']="mysql+pymysql://dbadmin:Abc123Abc123@127.
 db= SQLAlchemy(app)
 from primary_module.products.models import Brand,Category,Products
 from primary_module.products import routes
+from primary_module.certs import routes
 
 db.create_all()

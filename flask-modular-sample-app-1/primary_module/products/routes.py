@@ -1,4 +1,4 @@
-from flask import render_template,redirect,flash,url_for,request
+from flask import render_template,redirect,flash,url_for,request,send_from_directory
 from primary_module import app,db
 from .webforms import AddBrand,AddCategory,AddProduct
 from .models import Brand,Category,Products
@@ -7,9 +7,6 @@ import uuid as uuid
 
 #image upload location for product
 app.config["UPLOAD_FOLDER_PRODUCTS"]="D:\\github-working\\flask-test-project1\\flask-modular-sample-app-1\\primary_module\\static\\images\\products\\"
-
-
-
 
 
 #delete product for admin page
@@ -99,8 +96,6 @@ def productadd():
     return render_template("products/add_product.html",productaddform=product_add_form,brands=brands,
                            categories=categories)
 
-
-
 #update category for admin page
 @app.route("/updatecategory/<int:id>",methods=["GET","POST"])
 def catetoryupdate(id):
@@ -179,11 +174,25 @@ def brandadd():
             return redirect(url_for("brandlist"))
     return render_template("products/add_brand.html",addbrandform=add_brand_form)
 
-
+@app.route("/<int:id>",methods=["GET","POST"])
+def product_by_brand_display(id):
+    display_brand=Products.query.filter_by(brand_id=id)
+    return render_template("products/index.html",displaybrand=display_brand)
 
 @app.route("/")
 def index():
-    return "<h1 class='text-center'> Site Under Construction!</h1>"
+    #Display products only on available stock
+    product_list=Products.query.filter(Products.stock > 0)
+    brands=Brand.query.join(Products,(Brand.id==Products.brand_id)).all()
+    return render_template("products/index.html",display_products=product_list,brands=brands)
+
+@app.route("/css/products/main.css")
+def cert_style():
+    return send_from_directory("templates", "css/products/main.css")
+
+
+
+
 
 
 

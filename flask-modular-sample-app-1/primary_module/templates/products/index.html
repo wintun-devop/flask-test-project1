@@ -1,0 +1,47 @@
+{% extends "base_frontend.html" %}
+{% block title %}Home{% endblock  %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if displaybrand %}
+        {% for brand in displaybrand %}
+        <div class="col-md-3 mt-3">
+            <div class="card">
+                <img src="static\images\products\{{brand.image}}" alt="" class="card-img-top" height="200" alt="{{brand.name}}">
+                <div class="card-body">
+                    {% if brand.discount > 0 %}
+                    <h4 style="text-shadow:1px 1px 2px #000; color:#f00; transform:rotate(-20deg); position:absolute; top:10%; left:20%">Discount:{{ brand.discount }}</h4>
+                    {% endif %}
+                    <h6 class="text-center">{{brand.name}}</h6>
+                    <p class="text-center">Price ${{brand.price}}<p>
+                </div>
+                <div class="card-foorter">
+                        <a href="#" class="btn btn-sm btn-primary float-left">details</a>
+                        <a href="#" class="btn btn-sm btn-warning float-right">add to cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% for product in display_products %}
+        <div class="col-md-3 mt-3">
+            <div class="card">
+                <img src="static\images\products\{{product.image}}" alt="" class="card-img-top" height="200" alt="{{product.name}}">
+                <div class="card-body">
+                    {% if product.discount > 0 %}
+                    <h4 style="text-shadow:1px 1px 2px #000; color:#f00; transform:rotate(-20deg); position:absolute; top:10%; left:20%">Discount:{{ product.discount }}</h4>
+                    {% endif %}
+                    <h6 class="text-center">{{product.name}}</h6>
+                    <p class="text-center">Price ${{product.price}}<p>
+                </div>
+                <div class="card-foorter">
+                        <a href="#" class="btn btn-sm btn-primary float-left">details</a>
+                        <a href="#" class="btn btn-sm btn-warning float-right">add to cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock  %}
