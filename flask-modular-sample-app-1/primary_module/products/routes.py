@@ -55,13 +55,11 @@ def productupdate(id):
     return render_template("products/update_product.html",productupdateform=product_update_form,brands=brands,
                            categories=categories)
 
-
 #product list for admin
 @app.route("/listproduct",methods=["GET","POST"])
 def productlist():
     product_list=Products.query.all()
     return render_template("products/list_product.html",productlist=product_list)
-
 
 #add product page for admin panel
 @app.route("/addproduct",methods=["GET","POST"])
@@ -174,17 +172,31 @@ def brandadd():
             return redirect(url_for("brandlist"))
     return render_template("products/add_brand.html",addbrandform=add_brand_form)
 
+@app.route("/category/<int:id>",methods=["GET","POST"])
+def product_by_category(id):
+    product_by_category_display=Products.query.filter_by(category_id=id)
+    brands=Brand.query.join(Products,(Brand.id == Products.brand_id)).all()
+    categories=Category.query.join(Products,(Category.id == Products.category_id)).all()
+    return render_template("products/index.html",product_by_category_display=product_by_category_display,categories=categories,brands=brands)
+    
+
 @app.route("/<int:id>",methods=["GET","POST"])
 def product_by_brand_display(id):
     display_brand=Products.query.filter_by(brand_id=id)
-    return render_template("products/index.html",displaybrand=display_brand)
+    brands=Brand.query.join(Products,(Brand.id == Products.brand_id)).all()
+    categories=Category.query.join(Products,(Category.id == Products.category_id)).all()
+    return render_template("products/index.html",displaybrand=display_brand,brands=brands,categories=categories)
 
 @app.route("/")
 def index():
+    #display product by page limit
+    page=request.args.get("page",1,type=int)
     #Display products only on available stock
-    product_list=Products.query.filter(Products.stock > 0)
-    brands=Brand.query.join(Products,(Brand.id==Products.brand_id)).all()
-    return render_template("products/index.html",display_products=product_list,brands=brands)
+    product_list=Products.query.filter(Products.stock > 0).paginate(page=page,per_page=4)
+    #only display for instock brand
+    brands=Brand.query.join(Products,(Brand.id == Products.brand_id)).all()
+    categories=Category.query.join(Products,(Category.id == Products.category_id)).all()
+    return render_template("products/index.html",display_products=product_list,brands=brands,categories=categories)
 
 @app.route("/css/products/main.css")
 def cert_style():
